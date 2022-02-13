@@ -1,0 +1,22 @@
+public boolean add(Person person) throws Exception{
+		   List<Person> people=queryAll();
+		   boolean check=true;
+           for(Person person1:people)
+           {
+                if(person1.getBirth().equals(person.getBirth()) && person1.getAge().equals(person.getAge()) && person1.getName().equals(person.getName()))
+                {
+                	check=false;
+                }
+                else
+                {
+                   people.add(person);
+         		   String newJsonString=gson.toJson(people);
+         		   Files.write(PATH,newJsonString.getBytes("UTF-8"));
+                }
+                
+           }
+		   //作業 1:
+		   //如果person已存在則 return false
+		   //name,age,birth皆與目前資料庫的person資料相同
+		    return check;	        
+	   }
